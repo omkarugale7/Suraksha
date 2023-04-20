@@ -32,6 +32,10 @@ const UserSchema = new Mongoose.Schema({
     isVerified: {
         type: Boolean,
         default: false
+    },
+    entries: {
+        type: [],
+        default: []
     }
 });
 

@@ -162,6 +162,39 @@ module.exports.login = async (req, res) => {
 
 };
 
+module.exports.markPresent = async(req, res) => {
+
+    const { prn } = req.body;
+
+    try {
+        
+        const user = await User.findOne({ prn });
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+        console.log(formattedTime);
+
+        user.entries.push(formattedTime);
+
+        await user.save();
+
+        return res.status(200).json({ message: "User Entry Registered" });
+
+    } catch(error) {
+
+        return res.status(400).json({ message: error.message });
+
+    }
+
+}
+
 module.exports.verifyToken = async (req, res) => {
 
     const { token } = req.params;
