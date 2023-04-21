@@ -102,7 +102,7 @@ module.exports.login = async (req, res) => {
 
         const user = await User.findOne({ prn });
 
-        // console.log(user);
+        console.log(user);
 
         if(!user) {
             return res.status(404).json({
@@ -170,13 +170,21 @@ module.exports.markPresent = async(req, res) => {
         
         const user = await User.findOne({ prn });
 
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
+        // const now = new Date();
+        var currentTime = new Date();
+
+        var currentOffset = currentTime.getTimezoneOffset();
+
+        var ISTOffset = 330;   // IST offset UTC +5:30 
+
+        var ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset)*60000);
+
+        const year = ISTTime.getFullYear();
+        const month = String(ISTTime.getMonth() + 1).padStart(2, '0');
+        const day = String(ISTTime.getDate()).padStart(2, '0');
+        const hours = String(ISTTime.getHours()).padStart(2, '0');
+        const minutes = String(ISTTime.getMinutes()).padStart(2, '0');
+        const seconds = String(ISTTime.getSeconds()).padStart(2, '0');
         const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
         console.log(formattedTime);

@@ -1,5 +1,6 @@
 const moment = require('moment');
 const User = require('./../models/user');
+const sendEmail = require('./email');
 
 function isDateOlderThan2Days(dateString) {
 
@@ -24,7 +25,7 @@ function isDateOlderThan2Days(dateString) {
   }
 
 module.exports.runAt9AM = () => {
-  const targetTime = moment('11:24:30', 'HH:mm:ss');
+  const targetTime = moment('12:09:40', 'HH:mm:ss');
 
   setInterval(async () => {
     const now = moment();
@@ -39,12 +40,21 @@ module.exports.runAt9AM = () => {
     let remindUsers = [];
 
     for(var i in users) {
-        console.log(users[i]);
+        // console.log(users[i]);
         if(isDateOlderThan2Days(users[i].lastLoggedIn)) remindUsers.push(users[i]);
         else break;
     }
 
-    console.log(remindUsers);
+    for(var i in remindUsers) {
+
+        console.log(remindUsers[i].name.split(" ")[0]);
+        const message = `Dear ${remindUsers[i].name.split()[0]}, <br>
+        You have not logged into your system from more than 2 days now. This reminder is to inform you to login to College's WiFi`;
+        sendEmail(remindUsers[i].email, "Reminder Email - Suraksha Your Campus Buddy !!!", message);
+
+    }
+
+    // console.log(remindUsers);
 
 
 }
