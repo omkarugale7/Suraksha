@@ -183,6 +183,8 @@ module.exports.markPresent = async(req, res) => {
 
         user.entries.push(formattedTime);
 
+        user.lastLoggedIn = formattedTime;
+
         await user.save();
 
         return res.status(200).json({ message: "User Entry Registered" });
@@ -191,6 +193,24 @@ module.exports.markPresent = async(req, res) => {
 
         return res.status(400).json({ message: error.message });
 
+    }
+
+}
+
+module.exports.getProfile = async (req, res) => {
+
+    const { prn } = req.params;
+
+    try {
+        
+        const user = await User.findOne({prn});
+
+        res.status(200).json(user);
+
+    } catch (error) {
+        res.status(404).json({
+            message: "User not found"
+        });
     }
 
 }

@@ -36,7 +36,8 @@ const UserSchema = new Mongoose.Schema({
     entries: {
         type: [],
         default: []
-    }
+    },
+    lastLoggedIn: String
 });
 
 module.exports = Mongoose.model('User', UserSchema);

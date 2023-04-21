@@ -6,11 +6,13 @@ const port = process.env.PORT || 8080;
 const userRoutes = require('./routes/users');
 const adminRoutes = require('./routes/admins');
 const cors = require('cors');
+const { runAt9AM } = require('./utils/reminder');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 connectDB();
+runAt9AM();
 
 app.use(cors());
 app.use('/user', userRoutes);

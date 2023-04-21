@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
+const User = require('./../models/user');
 
 const secret = process.env.JWT_SECRET;
 
@@ -35,6 +36,22 @@ module.exports.login = async (req, res) => {
                 path: '/admin/login',
                 message: `Error processing request ${error.message}`
             }
+        })
+    }
+
+}
+
+module.exports.getAll = async (req, res) => {
+
+    try {
+
+        const users = await User.find({}).sort({"lastLoggedIn": 1});
+
+        res.status(200).json(users);
+
+    } catch(error) {
+        res.status(400).json({
+            message: "Unexpected Error"
         })
     }
 

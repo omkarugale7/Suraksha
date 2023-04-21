@@ -6,6 +6,7 @@ const users = require('./../controllers/users');
 router.route('/verify/:token').get(users.verifyToken);
 router.route('/markPresent').post(users.markPresent);
 router.route('/profile/login').post(users.login);
+router.route('/profile/:prn').get(users.getProfile);
 router.route('/profile').post(users.setProfile);
 
 module.exports = router;
