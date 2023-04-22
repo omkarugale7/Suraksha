@@ -25,7 +25,7 @@ function isDateOlderThan2Days(dateString) {
   }
 
 module.exports.runAt9AM = () => {
-  const targetTime = moment('12:09:40', 'HH:mm:ss');
+  const targetTime = moment('09:00:00', 'HH:mm:ss');
 
   setInterval(async () => {
     const now = moment();
