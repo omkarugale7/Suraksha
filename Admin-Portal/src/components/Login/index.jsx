@@ -25,7 +25,7 @@ function Login() {
   });
 
   const LoginHandler = (values) => {
-    const URL = "http://localhost:8080/admin";
+    const URL = "https://suraksha.onrender.com/admin";
     axios
       .post(
         URL,

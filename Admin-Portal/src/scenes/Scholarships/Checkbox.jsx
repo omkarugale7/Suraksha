@@ -5,7 +5,7 @@ const CheckboxWithAPI = (props) => {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    const URL = `http://localhost:8080/admin/getGrant/${props.yearOfStudy}`;
+    const URL = `https://suraksha.onrender.com/admin/getGrant/${props.yearOfStudy}`;
 
     axios
       .get(URL, 
@@ -32,7 +32,7 @@ const CheckboxWithAPI = (props) => {
 
     setIsChecked(!isChecked);
 
-    const URL = `http://localhost:8080/admin/grant/${props.yearOfStudy}`;
+    const URL = `https://suraksha.onrender.com/admin/grant/${props.yearOfStudy}`;
 
     // alert(URL);
 

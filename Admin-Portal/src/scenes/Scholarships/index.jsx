@@ -58,7 +58,7 @@ const Scholarships = (props) => {
   const [rowData, getRowData] = useState([]);
   const navigateTo = useNavigate();
   useEffect(() => {
-    const URL = `http://localhost:8080/admin/${props.yearOfStudy}`;
+    const URL = `https://suraksha.onrender.com/admin/${props.yearOfStudy}`;
 
     // alert(URL);
 
