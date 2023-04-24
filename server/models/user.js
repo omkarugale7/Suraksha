@@ -28,6 +28,10 @@ const UserSchema = new Mongoose.Schema({
         default: new Date()
     },
     yearOfStudy: String,
+    grant: {
+        type: Boolean,
+        default: false
+    },
     branch: String,
     isVerified: {
         type: Boolean,

@@ -2,12 +2,13 @@ import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
+import CheckboxWithAPI from "./Checkbox";
 import { useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Scholarships = () => {
+const Scholarships = (props) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -57,7 +58,10 @@ const Scholarships = () => {
   const [rowData, getRowData] = useState([]);
   const navigateTo = useNavigate();
   useEffect(() => {
-    const URL = `http://localhost:8080/admin`;
+    const URL = `http://localhost:8080/admin/${props.yearOfStudy}`;
+
+    // alert(URL);
+
     axios
       .get(URL, 
         {
@@ -67,9 +71,9 @@ const Scholarships = () => {
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
-          console.log(response);
+          // console.log(response);
           getRowData(response.data);
         } else {
           alert("Some error occurred.");
@@ -85,7 +89,7 @@ const Scholarships = () => {
         // window.location = "/login";
         return;
       });
-  }, []);
+  }, [props]);
 
 
   return (
@@ -94,6 +98,7 @@ const Scholarships = () => {
         title="USERS"
         subtitle="List of all users registered with Suraksha"
       />
+      <CheckboxWithAPI yearOfStudy={props.yearOfStudy}/>
       <Box
         m="40px 0 0 0"
         height="75vh"

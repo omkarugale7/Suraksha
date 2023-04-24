@@ -26,7 +26,10 @@ function App() {
           <Route exact path='/login' element={<Login/>}/>
           <Route exact path="/" element={<Dashboard/>} />
           {/* <Route exact path="/users" element={<Team/>} /> */}
-          <Route exact path="/users" element={<Scholarships/>} />
+          <Route exact path="/1st" element={<Scholarships yearOfStudy="1st"/>} />
+          <Route exact path="/2nd" element={<Scholarships yearOfStudy="2nd"/>} />
+          <Route exact path="/3rd" element={<Scholarships yearOfStudy="3rd"/>} />
+          <Route exact path="/4th" element={<Scholarships yearOfStudy="4th"/>} />
           <Route path="/mentors" element={<Mentors/>} />
           {/* <Route path="/form" element={<Form/>} /> */}
           {/* <Route path="/bar" element={<Bar/>} /> */}

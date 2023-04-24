@@ -24,6 +24,10 @@ function isDateOlderThan2Days(dateString) {
     return differenceInMs >= twoDaysInMs;
   }
 
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+ }
+
 module.exports.runAt9AM = () => {
   const targetTime = moment('09:00:00', 'HH:mm:ss');
 
@@ -34,7 +38,7 @@ module.exports.runAt9AM = () => {
     //   console.log('Code running at 09:00 AM every day');
     //   // replace the console.log statement above with your own code that should run at 09:00 AM
         
-    const users = await User.find({}).sort({ "lastLoggedIn": 1 });
+    const users = await User.find({"grant": false}).sort({ "lastLoggedIn": 1 });
     // console.log(users);
 
     let remindUsers = [];
@@ -51,6 +55,8 @@ module.exports.runAt9AM = () => {
         const message = `Dear ${remindUsers[i].name.split()[0]}, <br>
         You have not logged into your system from more than 2 days now. This reminder is to inform you to login to College's WiFi`;
         sendEmail(remindUsers[i].email, "Reminder Email - Suraksha Your Campus Buddy !!!", message);
+
+        if(i != 0 && i % 9 == 0) await sleep(300000);
 
     }
 

@@ -132,7 +132,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
+              Students
             </Typography>
             {/* <Item
               title="Users"
@@ -142,8 +142,32 @@ const Sidebar = () => {
               setSelected={setSelected}
             /> */}
             <Item
-              title="Users"
-              to="/users"
+              title="FY"
+              to="/1st"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="SY"
+              to="/2nd"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="TY"
+              to="/3rd"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="BTech"
+              to="/4th"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
