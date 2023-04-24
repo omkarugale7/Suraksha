@@ -12,7 +12,7 @@ const CheckboxWithAPI = (props) => {
         {
         headers: {
           "Content-Type": "application/json",
-          // "authorization": `Bearer ${localStorage.getItem('token')}`,
+          "authorization": `Bearer ${localStorage.getItem('token')}`,
         },
       })
       .then((response) => {
@@ -37,15 +37,15 @@ const CheckboxWithAPI = (props) => {
     // alert(URL);
 
     axios
-      .post(URL, 
+      .get(URL, 
         {
         headers: {
           "Content-Type": "application/json",
-          // "authorization": `Bearer ${localStorage.getItem('token')}`,
+          "authorization": `Bearer ${localStorage.getItem('token')}`,
         },
       })
       .then((response) => {
-        // console.log(response);
+        console.log(response);
       })
       .catch((err) => {
         console.log(err);

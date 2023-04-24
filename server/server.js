@@ -15,6 +15,12 @@ connectDB();
 runAt9AM();
 
 app.use(cors());
+
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With, Authorization");
+//     next();
+// });
+
 app.use('/user', userRoutes);
 app.use('/admin', adminRoutes);
 

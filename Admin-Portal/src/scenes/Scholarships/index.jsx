@@ -67,7 +67,7 @@ const Scholarships = (props) => {
         {
         headers: {
           "Content-Type": "application/json",
-          // "authorization": `Bearer ${localStorage.getItem('token')}`,
+          "authorization": `Bearer ${localStorage.getItem('token')}`,
         },
       })
       .then((response) => {

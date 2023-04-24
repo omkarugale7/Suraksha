@@ -70,7 +70,7 @@ module.exports.getAll = async (req, res) => {
 
         const { yearOfStudy } = req.params;
 
-        console.log(yearOfStudy);
+        // console.log(yearOfStudy);
 
         const users = await User.find({yearOfStudy}).sort({"lastLoggedIn": 1});
 

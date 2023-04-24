@@ -102,7 +102,7 @@ module.exports.login = async (req, res) => {
 
         const user = await User.findOne({ prn });
 
-        console.log(user);
+        // console.log(user);
 
         if(!user) {
             return res.status(404).json({
