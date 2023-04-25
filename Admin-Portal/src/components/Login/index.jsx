@@ -132,7 +132,7 @@ function Login() {
         </form>
       </div>
       <div className="col-md-6 col-sm-12 login_img">
-        {/* <img className="side_img" src={Women}  alt="Login" /> */}
+        <img className="side_img" src="https://res.cloudinary.com/ravikjha7/image/upload/v1682310401/WCE%20Virtual%20Tour/Suraksha_ybnje2.png"  alt="Login" />
       </div>
     </div>
   </div>

@@ -209,6 +209,8 @@ module.exports.getProfile = async (req, res) => {
 
     const { prn } = req.params;
 
+    console.log(prn);
+
     try {
         
         const user = await User.findOne({prn});

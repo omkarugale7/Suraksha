@@ -43,7 +43,7 @@ module.exports.adminAuth = async(req, res, next) => {
 
         const token = req.headers.authorization.split(" ")[1];
 
-        // console.log("Token " + token);
+        console.log("Token " + token);
 
         let decodedData;
 
