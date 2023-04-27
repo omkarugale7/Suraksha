@@ -41,7 +41,10 @@ const UserSchema = new Mongoose.Schema({
         type: [],
         default: []
     },
-    lastLoggedIn: String
+    lastLoggedIn: {
+        type: String,
+        default: ''
+    }
 });
 
 module.exports = Mongoose.model('User', UserSchema);
