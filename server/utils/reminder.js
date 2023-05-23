@@ -1,6 +1,10 @@
 const moment = require('moment');
 const User = require('./../models/user');
 const sendEmail = require('./email');
+const axios = require('axios');
+require("dotenv").config();
+
+const API_KEY = process.env.API_KEY;
 
 function isDateOlderThan2Days(dateString) {
 
@@ -41,6 +45,19 @@ module.exports.runAt9AM = () => {
     const users = await User.find({"grant": false}).sort({ "lastLoggedIn": 1 });
     // console.log(users);
 
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    const response = await axios.get(`https://calendarific.com/api/v2/holidays?api_key=${API_KEY}&country=IN&year=${year}&month=${month}&day=${day}`)
+
+    const holidays = response.data.response.holidays;
+
+    if (holidays.length > 0) return;
+
+    console.log("No Bank Holiday Today");
+
     let remindUsers = [];
 
     for(var i in users) {
@@ -48,6 +65,8 @@ module.exports.runAt9AM = () => {
         if(isDateOlderThan2Days(users[i].lastLoggedIn)) remindUsers.push(users[i]);
         else break;
     }
+
+    // console.log("Size : " + users.length);
 
     for(var i in remindUsers) {
 
